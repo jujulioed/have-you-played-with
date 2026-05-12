@@ -1,5 +1,7 @@
 package com.jujulioed;
 
+import java.util.ArrayList;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Main {
@@ -16,8 +18,9 @@ public class Main {
         RiotApiClient rpc = new RiotApiClient(apiKey);
 
         String puuid = rpc.getPuuid(gameName, tagLine);
-        System.out.println(puuid);
-    }
 
-    
+        ArrayList<String> matches = rpc.getMatchs(puuid);
+
+        String lastMatch = rpc.getMatchDetails(matches.get(0).replace("\"", ""));
+    }    
 }
